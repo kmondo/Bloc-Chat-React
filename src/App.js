@@ -1,6 +1,19 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import * as firebase from 'firebase';
+import RoomList from './components/RoomList';
+
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyBDAo97gVpVlHVNNznKtpVt68CAuujEojI",
+    authDomain: "bloc-chat-react-f0628.firebaseapp.com",
+    databaseURL: "https://bloc-chat-react-f0628.firebaseio.com",
+    projectId: "bloc-chat-react-f0628",
+    storageBucket: "bloc-chat-react-f0628.appspot.com",
+    messagingSenderId: "933547245569"
+  };
+  firebase.initializeApp(config);
 
 class App extends Component {
   render() {
