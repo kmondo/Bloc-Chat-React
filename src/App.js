@@ -5,16 +5,16 @@ import './App.css';
 import * as firebase from 'firebase';
 import RoomList from './components/RoomList';
 
-  // Initialize Firebase
+// Initialize Firebase
   var config = {
-    apiKey: "AIzaSyBDAo97gVpVlHVNNznKtpVt68CAuujEojI",
-    authDomain: "bloc-chat-react-f0628.firebaseapp.com",
-    databaseURL: "https://bloc-chat-react-f0628.firebaseio.com",
-    projectId: "bloc-chat-react-f0628",
-    storageBucket: "bloc-chat-react-f0628.appspot.com",
-    messagingSenderId: "933547245569"
+    apiKey: "AIzaSyCl38aI0scyd_td0g2Ir5MJaLopQCa5dGM",
+    authDomain: "bloc-chat-react-kmm.firebaseapp.com",
+    databaseURL: "https://bloc-chat-react-kmm.firebaseio.com",
+    projectId: "bloc-chat-react-kmm",
+    storageBucket: "",
+    messagingSenderId: "719976829665"
   };
-  firebase.initializeApp(config)
+  firebase.initializeApp(config);
 
 class App extends Component {
   render() {
@@ -24,7 +24,7 @@ class App extends Component {
             { this.state.rooms.map( (room, firebase) =>
               <RoomList
                 firebase={ firebase }
-                key={ room }
+                // key={ room }
               />
             )}
           </ul>
