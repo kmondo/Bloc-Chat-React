@@ -20,14 +20,13 @@ class RoomList extends Component {
 
   render() {
     return (
-      <li>{ this.props.rooms }</li>
-      // <nav>
-      //   {/* { this.state.rooms.map( (room) =>
-      //   <RoomList key={ index } description={ room.description } />
-      // </nav> */}
+      <section>
+        { this.state.rooms.map( (room, firebase) =>
+          <li>{ room.name }</li>
+        )}
+      </section>
     );
   }
 }
-
 
 export default RoomList;

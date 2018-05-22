@@ -21,12 +21,12 @@ class App extends Component {
     return (
         <div className="container">
           <ul>
-            { this.state.rooms.map( (room, firebase) =>
+            {/* { this.state.rooms.map( (room, firebase) => */}
               <RoomList
                 firebase={ firebase }
                 // key={ room }
               />
-            )}
+            {/* )} */}
           </ul>
         </div>
               /* <header className="App-header">
