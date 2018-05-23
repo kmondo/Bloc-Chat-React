@@ -21,8 +21,8 @@ class RoomList extends Component {
   render() {
     return (
       <section>
-        { this.state.rooms.map( (room, firebase) =>
-          <li>{ room.name }</li>
+        { this.state.rooms.map( (room) =>
+          <li key={room.key}>{ room.name }</li>
         )}
       </section>
     );
