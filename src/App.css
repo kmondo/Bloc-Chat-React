@@ -1,25 +1,36 @@
+@import url('https://fonts.googleapis.com/css?family=Architects Daughter');
+
 .App {
   text-align: center;
 }
 
 .App-logo {
-  /* animation: App-logo-spin infinite 20s linear; */
-  height: 80px;
+  /* anim;ation: App-logo-spin infinite 20s linear; */
+  height: 150px;
+  align-items: center;
+  position: absolute;
 }
 
 .App-header {
-  background-color: #222;
+  background-color: #17089D;
+  font-family: 'Daughter';
+  font-variant-caps: small-caps;
   height: 150px;
   padding: 20px;
   color: white;
 }
 
 .App-title {
-  font-size: 3em;
+  font-size: 4em;
+  text-align: center
+
 }
 
 .App-intro {
   font-size: large;
+  text-align: center;
+  font-family: 'Daughter';
+
 }
 
 /* @keyframes App-logo-spin {

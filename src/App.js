@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import logo from './logo.jpeg';
+import logo from './logo.jpeg';
 // import ReactDOM from 'react';
 import './App.css';
 import * as firebase from 'firebase';
@@ -19,7 +19,16 @@ import RoomList from './components/RoomList';
 class App extends Component {
   render() {
     return (
+      <section>
+        <header className="App-header">
+        <img src={logo} className="App-logo" alt="text message image" />
+        <h1 className="App-title">Bloc Chat</h1>
+        </header>
+      <p className="App-intro">
+        Pic a topic and chat away!
+      </p>
         <div className="container">
+          <h1>Available Rooms</h1>
           <ul>
             {/* { this.state.rooms.map( (room, firebase) => */}
               <RoomList
@@ -29,13 +38,7 @@ class App extends Component {
             {/* )} */}
           </ul>
         </div>
-              /* <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Bloc Chat</h1>
-        </header>
-        <p className="App-intro">
-          Pic a topic and chat away!
-        </p> */
+       </section>
     );
   }
 }
