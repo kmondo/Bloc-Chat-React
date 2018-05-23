@@ -5,7 +5,8 @@ class RoomList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      rooms: []
+      rooms: [],
+      newRoomName: ''
     };
     this.roomsRef = this.props.firebase.database().ref('rooms');
     this.handleChange = this.handleChange.bind(this);
@@ -16,20 +17,24 @@ class RoomList extends Component {
   }
 
   handleChange(event) {
-    this.setState({value: event.target.value});
+    this.setState({newRoomName: event.target.value});
   }
 
   handleSubmit(event) {
-    if(this.state.newRoomName === 'New room') {
-      alert('A new chat room was created:' + this.state.value);
-    } else {
-      this.roomsRef.push({
-        name: newRoomName
-      });
-      event.preventDefault();
+    event.preventDefault();
+    if(this.state.newRoomName !== '') {
+      this.createRoom(this.state.newRoomName);
+      this.setState({newRoomName: ''});
+      //clear box info
     }
 
 
+  }
+
+  createRoom(roomName) {
+    this.roomsRef.push({
+      name: roomName
+    });
   }
 
   componentDidMount() {
@@ -50,8 +55,8 @@ class RoomList extends Component {
   render() {
     return (
       <section>
-        { this.state.rooms.map( (room, firebase) =>
-          <li>{ room.name }</li>
+        { this.state.rooms.map( (room) =>
+          <li key={room.key}>{ room.name }</li>
         )}
         <section>
           <form onSubmit={this.handleSubmit}>
