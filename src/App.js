@@ -21,7 +21,7 @@ class App extends Component {
     return (
       <section>
         <header className="App-header">
-        <img src={logo} className="App-logo" alt="text message image" />
+        <img src={logo} className="App-logo" alt="text message" />
         <h1 className="App-title">Bloc Chat</h1>
         </header>
       <p className="App-intro">

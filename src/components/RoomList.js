@@ -11,9 +11,7 @@ class RoomList extends Component {
     this.roomsRef = this.props.firebase.database().ref('rooms');
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    // this.roomsRef.push({
-    //   name: newRoomName
-    // });-where does this go??
+    this.createRoom = this.createRoom.bind(this);
   }
 
   handleChange(event) {
@@ -26,10 +24,16 @@ class RoomList extends Component {
       this.createRoom(this.state.newRoomName);
       this.setState({newRoomName: ''});
       //clear box info
+      // if (!this.state.newRoomName) {return}
+      // this.setState({roomName: ''});
+      // const newRoomName = '';
+      // this.setState({ rooms: [...this.state.rooms, newRoomName]})
     }
 
 
   }
+
+
 
   createRoom(roomName) {
     this.roomsRef.push({
@@ -44,13 +48,6 @@ class RoomList extends Component {
       this.setState({ rooms: this.state.rooms.concat( room ) })
     });
   }
-
-  // createRoom() {
-  // const newRoomName = {
-  //  this.roomsRef.push({
-  //  name: newRoomName
-  //   })
-  // }
 
   render() {
     return (
