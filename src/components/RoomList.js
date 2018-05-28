@@ -25,8 +25,8 @@ class RoomList extends Component {
       this.setState({newRoomName: ''});
       //clear box info
       // if (!this.state.newRoomName) {return}
-      // this.setState({roomName: ''});
-      // const newRoomName = '';
+      // this.setState({newRoomName: ''});
+      // // const newRoomName = '';
       // this.setState({ rooms: [...this.state.rooms, newRoomName]})
     }
 
@@ -58,7 +58,7 @@ class RoomList extends Component {
         <section>
           <form onSubmit={this.handleSubmit}>
             <label>Create a Room:
-            <textarea value={this.state.value} onChange={this.handleChange} />
+            <textarea value={this.state.newRoomName} onChange={this.handleChange} />
             </label>
             <input type="submit" value="Submit" />
           </form>
