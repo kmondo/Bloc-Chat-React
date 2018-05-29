@@ -4,6 +4,7 @@ import logo from './logo.jpeg';
 import './App.css';
 import * as firebase from 'firebase';
 import RoomList from './components/RoomList';
+// import MessageList from './components/MessageList';
 
 // Initialize Firebase
   var config = {
@@ -17,6 +18,12 @@ import RoomList from './components/RoomList';
   firebase.initializeApp(config);
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      activeRoom: ''
+    };
+
   render() {
     return (
       <section>
@@ -27,18 +34,15 @@ class App extends Component {
       <p className="App-intro">
         Pic a topic and chat away!
       </p>
-        <div className="container">
+        <nav className="container">
           <h1>Available Rooms</h1>
           <ul>
-            {/* { this.state.rooms.map( (room, firebase) => */}
-              <RoomList
-                firebase={ firebase }
-                // key={ room }
-              />
-            {/* )} */}
+            <RoomList
+                firebase={ firebase } activeRoom={this.state.activeRoom}
+            />
           </ul>
-        </div>
-       </section>
+        </nav>
+      </section>
     );
   }
 }

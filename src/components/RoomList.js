@@ -6,12 +6,22 @@ class RoomList extends Component {
     super(props);
     this.state = {
       rooms: [],
-      newRoomName: ''
+      newRoomName: '',
+      activeRoom: ''
     };
+
     this.roomsRef = this.props.firebase.database().ref('rooms');
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.createRoom = this.createRoom.bind(this);
+  }
+
+  componentDidMount() {
+    this.roomsRef.on('child_added', snapshot => {
+      const room = snapshot.val();
+      room.key = snapshot.key;
+      this.setState({ rooms: this.state.rooms.concat( room ) })
+    });
   }
 
   handleChange(event) {
@@ -23,17 +33,8 @@ class RoomList extends Component {
     if(this.state.newRoomName !== '') {
       this.createRoom(this.state.newRoomName);
       this.setState({newRoomName: ''});
-      //clear box info
-      // if (!this.state.newRoomName) {return}
-      // this.setState({newRoomName: ''});
-      // // const newRoomName = '';
-      // this.setState({ rooms: [...this.state.rooms, newRoomName]})
     }
-
-
   }
-
-
 
   createRoom(roomName) {
     this.roomsRef.push({
@@ -41,23 +42,23 @@ class RoomList extends Component {
     });
   }
 
-  componentDidMount() {
-    this.roomsRef.on('child_added', snapshot => {
-      const room = snapshot.val();
-      room.key = snapshot.key;
-      this.setState({ rooms: this.state.rooms.concat( room ) })
-    });
-  }
+  // componentDidMount() {
+  //   this.roomsRef.on('child_added', snapshot => {
+  //     const room = snapshot.val();
+  //     room.key = snapshot.key;
+  //     this.setState({ rooms: this.state.rooms.concat( room ) })
+  //   });
+  // }
 
   render() {
     return (
       <section>
         { this.state.rooms.map( (room) =>
-          <li key={room.key}>{ room.name }</li>
+          <li key={room.key} onClick={activeRoom.key}>{ room.name }</li>
         )}
         <section>
           <form onSubmit={this.handleSubmit}>
-            <label>Create a Room:
+            <label>Create Room:
             <textarea value={this.state.newRoomName} onChange={this.handleChange} />
             </label>
             <input type="submit" value="Submit" />
@@ -68,5 +69,6 @@ class RoomList extends Component {
     );
   }
 }
+
 
 export default RoomList;
