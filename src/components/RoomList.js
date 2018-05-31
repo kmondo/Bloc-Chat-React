@@ -14,6 +14,7 @@ class RoomList extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.createRoom = this.createRoom.bind(this);
+    this.handleActiveRoom = this.handleActiveRoom.bind(this);
   }
 
   componentDidMount() {
@@ -25,7 +26,7 @@ class RoomList extends Component {
   }
 
   handleChange(event) {
-    this.setState({newRoomName: event.target.value});
+    this.setState({newRoomName: event.target.value})
   }
 
   handleSubmit(event) {
@@ -42,6 +43,11 @@ class RoomList extends Component {
     });
   }
 
+  handleActiveRoom(room) {
+    console.log('this is working', room);
+    this.props.activeRoom(room);
+  }
+
   // componentDidMount() {
   //   this.roomsRef.on('child_added', snapshot => {
   //     const room = snapshot.val();
@@ -54,7 +60,9 @@ class RoomList extends Component {
     return (
       <section>
         { this.state.rooms.map( (room) =>
-          <li key={room.key} onClick={activeRoom.key}>{ room.name }</li>
+          <li key={room.key} onClick={(e) => this.handleActiveRoom(room)}>
+            { room.name }
+          </li>
         )}
         <section>
           <form onSubmit={this.handleSubmit}>

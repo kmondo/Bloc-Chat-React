@@ -4,7 +4,7 @@ import logo from './logo.jpeg';
 import './App.css';
 import * as firebase from 'firebase';
 import RoomList from './components/RoomList';
-// import MessageList from './components/MessageList';
+import MessageList from './components/MessageList';
 
 // Initialize Firebase
   var config = {
@@ -22,7 +22,12 @@ class App extends Component {
     super(props);
     this.state = {
       activeRoom: ''
-    };
+    }
+  }
+
+    activeRoom(room) {
+      this.setState({activeRoom: room});
+    }
 
   render() {
     return (
@@ -38,10 +43,16 @@ class App extends Component {
           <h1>Available Rooms</h1>
           <ul>
             <RoomList
-                firebase={ firebase } activeRoom={this.state.activeRoom}
+                firebase={ firebase }
+                activeRoom={this.activeRoom.bind(this)}
             />
           </ul>
         </nav>
+        <h2>Active Room: {this.state.activeRoom.name}</h2>
+        <MessageList
+          firebase={ firebase }
+          activeRoom={this.state.activeRoom}
+        />
       </section>
     );
   }
