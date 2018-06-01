@@ -30,28 +30,52 @@ class MessageList extends Component {
     this.setState({activeRoom: event.target.value});
   }
 
-
   render() {
-    return(
-      <section>
-        <p>{this.props.activeRoom}</p>
+ const activeRoom = this.props.activeRoom;
 
-        <table>
-          <tbody>
-          { this.state.messages.map( (message) => (
-              <tr key={message.key}>
-                <td>{message.content}</td>
-                <td>{message.username}</td>
-                <td>{message.sentAt}</td>
-                <td>{message.roomId}</td>
-              </tr>
-          ))}
-          </tbody>
-        </table>
-      </section>
+ const messageList = (
+  this.state.messages.map((message) => {
+    if (message.roomId === activeRoom.key) {
+      return <li key={message.key}>{message.content}</li>
+    }
+    return null;
+  })
+);
 
-        );
-  }
+return(
+  <div>
+    <ul>{messageList}</ul>
+  </div>
+  );
 }
+}
+//   render() {
+//     const activeRoom = this.props.activeRoom;
+//     //const message = this.state.message;
+//       // if (message.roomId === activeRoom) {
+//     return(
+//       <section>
+//         <p>{this.props.activeRoom}</p>
+//
+//         <table>
+//           <tbody>
+//           { this.state.messages.map( (message) => (
+//             // const activeRoom = this.props.activeRoom;
+//               if (message.roomId === activeRoom) {
+//                 // return(
+//               <tr key={message.key}>
+//                 <td>{message.content}</td>
+//                 <td>{message.username}</td>
+//                 <td>{message.sentAt}</td>
+//                 <td>{message.roomId}</td>
+//               </tr>
+//           }))};
+//           </tbody>
+//         </table>
+//       </section>
+//       )
+//     );
+//   }
+// }
 
 export default MessageList;
