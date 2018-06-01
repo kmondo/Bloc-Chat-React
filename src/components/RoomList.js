@@ -65,7 +65,7 @@ class RoomList extends Component {
           </li>
         )}
         <section>
-          <form onSubmit={this.handleSubmit}>
+          <form className='Input-box' onSubmit={this.handleSubmit}>
             <label>Create Room:
             <textarea value={this.state.newRoomName} onChange={this.handleChange} />
             </label>

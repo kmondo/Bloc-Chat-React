@@ -18,13 +18,14 @@ class MessageList extends Component {
 
   componentDidMount() {
     this.messagesRef.on('child_added', snapshot => {
+      console.log("Child Added");
       const message = snapshot.val();
       message.key = snapshot.key;
       this.setState({ messages: this.state.messages.concat( message ) })
     });
-    console.log('messages', this.state.messages)
+    console.log(this.state.messages)
   }
-
+//'messages, removed from console.log on line 26
   handleChange(event) {
     this.setState({activeRoom: event.target.value});
   }
@@ -32,18 +33,22 @@ class MessageList extends Component {
 
   render() {
     return(
+      <section>
+        <p>{this.props.activeRoom}</p>
+
         <table>
           <tbody>
-          { this.state.messages.map( (message) =>
+          { this.state.messages.map( (message) => (
               <tr key={message.key}>
                 <td>{message.content}</td>
                 <td>{message.username}</td>
                 <td>{message.sentAt}</td>
                 <td>{message.roomId}</td>
               </tr>
-          )}
+          ))}
           </tbody>
         </table>
+      </section>
 
         );
   }
