@@ -2,9 +2,13 @@ import React, { Component } from 'react';
 import logo from './logo.jpeg';
 // import ReactDOM from 'react';
 import './App.css';
+// import './RoomList.css'
+// import './MessageList.css';
+// import './User.css';
 import * as firebase from 'firebase';
 import RoomList from './components/RoomList';
 import MessageList from './components/MessageList';
+import User from './components/User';
 
 // Initialize Firebase
   var config = {
@@ -21,12 +25,17 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeRoom: ''
+      activeRoom: '',
+      currentUser: ''
     }
   }
 
     activeRoom(room) {
       this.setState({activeRoom: room});
+    }
+
+    setUser(user) {
+      this.setState({currentUser: user});
     }
 
   render() {
@@ -46,12 +55,18 @@ class App extends Component {
                 firebase={ firebase }
                 activeRoom={this.activeRoom.bind(this)}
             />
+            <User
+              firebase={ firebase }
+              setUser={this.setUser.bind(this)}
+              currentUser={this.state.currentUser}
+            />
           </ul>
         </nav>
         <h2>Active Room: {this.state.activeRoom.name}</h2>
         <MessageList
           firebase={ firebase }
           activeRoom={this.state.activeRoom}
+          user={this.state.currentUser}
         />
       </section>
     );
