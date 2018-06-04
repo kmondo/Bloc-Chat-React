@@ -66,7 +66,7 @@ return(
   <section>
     <form className='message-create'>
       <label>New Message:
-      <textarea input='text' value={this.state.newMessage} onChange= {this.handleChange.bind(this)}>Type message here</textarea>
+      <textarea input='text' onChange= {this.handleChange.bind(this)}>Type message here</textarea>
     </label>
     <button className="send" onClick={this.handleSend}>Send</button>
     </form>
