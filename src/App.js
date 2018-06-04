@@ -59,7 +59,6 @@ class App extends Component {
               firebase={ firebase }
               setUser={this.setUser.bind(this)}
               currentUser={this.state.currentUser}
-              {this.props.message.username}
             />
           </ul>
         </nav>
