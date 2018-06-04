@@ -30,12 +30,17 @@ class MessageList extends Component {
   }
 //'messages, removed from console.log on line 26
   handleChange(event) {
-    this.setState({activeRoom: event.target.value});
+    this.setState({newMessage: event.target.value});
   }
 
   createMessage(messageName) {
     this.messagesRef.push({
-      name: messageName
+      // name: messageName
+      username: this.props.user,
+      content: messageName,
+      sentAt: this.props.firebase.database.ServerValue.TIMESTAMP,
+      roomId:this.props.activeRoom.key
+
     });
   }
 
@@ -61,7 +66,11 @@ class MessageList extends Component {
 return(
   <section>
     <div>
-    <ul>{messageList}</ul>
+    <ul>{messageList}
+      {/* <li key={message.key}>{message.username}</li>
+//added line above - not working though. */}
+    </ul>
+
   </div>
   <section>
     <form className='message-create'>
