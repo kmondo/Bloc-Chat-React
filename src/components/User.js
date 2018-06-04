@@ -32,12 +32,11 @@ class User extends Component {
 
 
   render() {
-      let userName = '';
+      let userName = 'Guest';
         if (this.props.user) {
           userName = this.props.user.displayName;
-        } else {
-          userName = 'Guest'
         }
+        
           return(
             <section>
               <div>Current User:{userName}</div>
