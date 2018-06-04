@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import logo from './logo.jpeg';
 // import ReactDOM from 'react';
 import './App.css';
-// import './RoomList.css'
-// import './MessageList.css';
-// import './User.css';
+// import './components/RoomList.css'
+// import './components/MessageList.css';
+// import './components/User.css';
 import * as firebase from 'firebase';
 import RoomList from './components/RoomList';
 import MessageList from './components/MessageList';

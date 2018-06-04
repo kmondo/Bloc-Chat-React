@@ -11,9 +11,12 @@ class MessageList extends Component {
         sentAt: this.props.firebase.database.ServerValue.TIMESTAMP,
         roomId: ''
 
-      }
+      },
+      newMessage: ''
     };
     this.messagesRef = this.props.firebase.database().ref('messages');
+    this.handleSend = this.handleSend.bind(this);
+    this.createMessage = this.createMessage.bind(this);
   }
 
   componentDidMount() {
@@ -30,6 +33,19 @@ class MessageList extends Component {
     this.setState({activeRoom: event.target.value});
   }
 
+  createMessage(messageName) {
+    this.messagesRef.push({
+      name: messageName
+    });
+  }
+
+  handleSend(event) {
+    event.preventDefault();
+    this.createMessage(this.state.newMessage);
+    this.setState({newMessage: ''});
+    console.log('sending message');
+  }
+
   render() {
  const activeRoom = this.props.activeRoom;
 
@@ -43,9 +59,19 @@ class MessageList extends Component {
 );
 
 return(
-  <div>
+  <section>
+    <div>
     <ul>{messageList}</ul>
   </div>
+  <section>
+    <form className='message-create'>
+      <label>New Message:
+      <textarea value={this.state.newMessage}>Type message here</textarea>
+    </label>
+    <button className="send" onClick={this.handleSend}>Send</button>
+    </form>
+  </section>
+</section>
   );
 }
 }
