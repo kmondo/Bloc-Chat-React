@@ -3,10 +3,11 @@ import React, {Component} from 'react';
 class User extends Component {
   constructor(props) {
     super(props);
-    // this.state = {
-    //   user: ''
-    //
-    // };
+    this.state = {
+      // user: ''
+    };
+
+    // this.setState({username: ""})
 
     this.userRef = this.props.firebase.database().ref('user');
     this.signIn = this.signIn.bind(this);
@@ -32,6 +33,8 @@ class User extends Component {
 
 
   render() {
+
+    // this.state.username
       let userName = "Guest";
         if (this.props.user) {
           userName = this.props.user.displayName;

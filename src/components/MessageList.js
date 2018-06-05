@@ -39,7 +39,7 @@ class MessageList extends Component {
       username: !this.props.user ? 'Guest' : this.props.user.displayName,
       content: messageName,
       sentAt: this.props.firebase.database.ServerValue.TIMESTAMP,
-      roomId:this.props.activeRoom.key
+      // roomId:this.props.activeRoom.key
 
     });
   }
@@ -56,9 +56,11 @@ class MessageList extends Component {
 
  const messageList = (
   this.state.messages.map((message) => {
+    if(message.roomId !== undefined) {
     if (message.roomId === activeRoom.key) {
       return <li key={message.key}>{message.content}</li>
     }
+  }
     return null;
   })
 );
