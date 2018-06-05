@@ -32,15 +32,16 @@ class User extends Component {
 
 
   render() {
-      let userName = '';
+      let userName = "Guest";
         if (this.props.user) {
           userName = this.props.user.displayName;
-        } else {
-          userName = 'Guest'
+          //!this.props.user ? 'Guest' : this.props.user.displayName
         }
+    //removed from line 37: this.props.user.displayName;
+    //added onChange to line 44 to try to get Current User displayed in browser
           return(
             <section>
-              <div>Current User:{userName}</div>
+              <div onChange={this.props.user}>Current User:{userName}</div>
               <button className='sign-in' onClick={this.signIn}>Sign In</button>
               <button className='sign-out' onClick={this.signOut}>Sign Out</button>
             </section>

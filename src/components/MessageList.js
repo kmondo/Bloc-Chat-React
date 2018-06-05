@@ -36,7 +36,7 @@ class MessageList extends Component {
   createMessage(messageName) {
     this.messagesRef.push({
       // name: messageName
-      username: this.props.user,
+      username: !this.props.user ? 'Guest' : this.props.user.displayName,
       content: messageName,
       sentAt: this.props.firebase.database.ServerValue.TIMESTAMP,
       roomId:this.props.activeRoom.key
@@ -75,9 +75,9 @@ return(
   <section>
     <form className='message-create'>
       <label>New Message:
-      <textarea input='text' onChange= {this.handleChange.bind(this)}>Type message here</textarea>
+      <textarea placeholder="Type New Message Here" onChange= {this.handleChange.bind(this)}></textarea>
     </label>
-    <button className="send" onClick={this.handleSend}>Send</button>
+    <button className="text" onClick={this.handleSend}>Send</button>
     </form>
   </section>
 </section>
