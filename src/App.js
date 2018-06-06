@@ -39,6 +39,7 @@ class App extends Component {
     }
 
   render() {
+    console.log(this.state.currentUser)
     return (
       <section>
         <header className="App-header">

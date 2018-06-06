@@ -34,10 +34,12 @@ class MessageList extends Component {
   }
 
   createMessage(messageName) {
+    //e.preventDefault();
     this.messagesRef.push({
       // name: messageName
       username: !this.props.user ? 'Guest' : this.props.user.displayName,
       content: messageName,
+      //or should it be content: this.state.content with e passed into createMessage as opposed to a new paramenter messageName?
       sentAt: this.props.firebase.database.ServerValue.TIMESTAMP,
       roomId:this.props.activeRoom.key
 
