@@ -41,14 +41,13 @@ class App extends Component {
   render() {
     console.log(this.state.currentUser)
     return (
+      //EXAMPLE {check if user is signed in} ? {render message form} : {NULL}
+      {this.state.activeRoom} ? {this.state.newMessage} : {null}
       <section>
         <header className="App-header">
         <img src={logo} className="App-logo" alt="text message" />
         <h1 className="App-title">Bloc Chat</h1>
         </header>
-      <p className="App-intro">
-        Pic a topic and chat away!
-      </p>
         <nav className="container">
           <h1>Available Rooms</h1>
           <ul>
@@ -63,7 +62,9 @@ class App extends Component {
             />
           </ul>
         </nav>
-        <h2>Active Room: {this.state.activeRoom.name}</h2>
+        <h2>Current User: {this.state.currentUser ? this.state.currentUser.displayName : 'Guest'}</h2>
+        <h3>Active Room: {this.state.activeRoom.name}</h3>
+
         <MessageList
           firebase={ firebase }
           activeRoom={this.state.activeRoom}
@@ -75,3 +76,7 @@ class App extends Component {
 }
 
 export default App;
+
+/* <p className="App-intro">
+  Pic a topic and chat away!
+</p> */

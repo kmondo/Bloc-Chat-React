@@ -44,6 +44,8 @@ class MessageList extends Component {
       roomId:this.props.activeRoom.key
 
     });
+    this.setState({newMessage: ''});
+    //will above line clear the textbox after sending message?
   }
 
   handleSend(event) {
