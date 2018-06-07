@@ -45,9 +45,9 @@ class App extends Component {
         <img src={logo} className="App-logo" alt="text message" />
         <h1 className="App-title">Bloc Chat</h1>
         </header>
-      <p className="App-intro">
+      {/* <p className="App-intro">
         Pic a topic and chat away!
-      </p>
+      </p> */}
         <nav className="container">
           <h1>Available Rooms</h1>
           <ul>
@@ -62,7 +62,8 @@ class App extends Component {
             />
           </ul>
         </nav>
-        <h2>Active Room: {this.state.activeRoom.name}</h2>
+        <h2>Current User: {this.state.currentUser ? this.state.currentUser.displayName : 'Guest'}</h2>
+        <h3>Active Room: {this.state.activeRoom.name}</h3>
         <MessageList
           firebase={ firebase }
           activeRoom={this.state.activeRoom}
