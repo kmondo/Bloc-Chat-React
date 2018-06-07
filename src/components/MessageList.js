@@ -34,6 +34,7 @@ class MessageList extends Component {
   }
 
   createMessage(messageName) {
+    console.log(this.props.activeRoom.key);
     //e.preventDefault();
     this.messagesRef.push({
       // name: messageName
