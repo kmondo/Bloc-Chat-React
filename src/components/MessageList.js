@@ -68,6 +68,18 @@ class MessageList extends Component {
   })
 );
 
+const messageForm = (
+  <form className='message-create'>
+    <label>
+      New Message:
+      <textarea placeholder="Type New Message Here" onChange= {this.handleChange.bind(this)}></textarea>
+    </label>
+    <button className="text" onClick={this.handleSend}>Send
+      {/* <textarea placeholder="Add Message Here..." onChange= {this.handleChange.bind(this)}></textarea> */}
+    </button>
+  </form>
+);
+
 //removed from line 58 after bracket {   if(message.roomId !== undefined)
 return(
   <section>
@@ -79,12 +91,7 @@ return(
 
   </div>
   <section>
-    <form className='message-create'>
-      <label>New Message:
-      <textarea placeholder="Type New Message Here" onChange= {this.handleChange.bind(this)}></textarea>
-    </label>
-    <button className="text" onClick={this.handleSend}>Send</button>
-    </form>
+    {this.props.activeRoom ? messageForm : null}
   </section>
 </section>
   );
