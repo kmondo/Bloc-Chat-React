@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import logo from './logo.jpeg';
 // import ReactDOM from 'react';
 import './App.css';
-// import './RoomList.css'
-// import './MessageList.css';
-// import './User.css';
+// import './components/RoomList.css'
+import './components/MessageList.css';
+// import './components/User.css';
 import * as firebase from 'firebase';
 import RoomList from './components/RoomList';
 import MessageList from './components/MessageList';
@@ -26,7 +26,8 @@ class App extends Component {
     super(props);
     this.state = {
       activeRoom: '',
-      currentUser: ''
+      currentUser: '',
+      createNewMessage: ''
     }
   }
 
@@ -38,16 +39,20 @@ class App extends Component {
       this.setState({currentUser: user});
     }
 
+    selectRoomFirst(msg) {
+      this.setState({createNewMessage: msg})
+    }
+
+
+
   render() {
+    console.log(this.state.currentUser)
     return (
       <section>
         <header className="App-header">
         <img src={logo} className="App-logo" alt="text message" />
         <h1 className="App-title">Bloc Chat</h1>
         </header>
-      {/* <p className="App-intro">
-        Pic a topic and chat away!
-      </p> */}
         <nav className="container">
           <h1>Available Rooms</h1>
           <ul>
@@ -55,15 +60,17 @@ class App extends Component {
                 firebase={ firebase }
                 activeRoom={this.activeRoom.bind(this)}
             />
+          </ul>
+        </nav>
+        <main>
+          <h2>Current User: {this.state.currentUser ? this.state.currentUser.displayName : 'Guest'}</h2>
             <User
               firebase={ firebase }
               setUser={this.setUser.bind(this)}
               currentUser={this.state.currentUser}
             />
-          </ul>
-        </nav>
-        <h2>Current User: {this.state.currentUser ? this.state.currentUser.displayName : 'Guest'}</h2>
-        <h3>Active Room: {this.state.activeRoom.name}</h3>
+        </main>
+        <h3>Current Room: {this.state.activeRoom.name}</h3>
         <MessageList
           firebase={ firebase }
           activeRoom={this.state.activeRoom}
@@ -75,3 +82,7 @@ class App extends Component {
 }
 
 export default App;
+
+/* <p className="App-intro">
+  Pic a topic and chat away!
+</p> */

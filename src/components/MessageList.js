@@ -11,9 +11,12 @@ class MessageList extends Component {
         sentAt: this.props.firebase.database.ServerValue.TIMESTAMP,
         roomId: ''
 
-      }
+      },
+      newMessage: ''
     };
     this.messagesRef = this.props.firebase.database().ref('messages');
+    this.handleSend = this.handleSend.bind(this);
+    this.createMessage = this.createMessage.bind(this);
   }
 
   componentDidMount() {
@@ -27,14 +30,36 @@ class MessageList extends Component {
   }
 //'messages, removed from console.log on line 26
   handleChange(event) {
-    this.setState({activeRoom: event.target.value});
+    this.setState({newMessage: event.target.value});
+  }
+
+  createMessage(messageName) {
+    console.log(this.props.activeRoom.key);
+    //e.preventDefault();
+    this.messagesRef.push({
+      // name: messageName
+      username: !this.props.user ? 'Guest' : this.props.user.displayName,
+      content: messageName,
+      sentAt: this.props.firebase.database.ServerValue.TIMESTAMP,
+      roomId:this.props.activeRoom.key
+
+    });
+    this.setState({newMessage: ''});
+    //will above line clear the textbox after sending message?
+  }
+
+  handleSend(event) {
+    event.preventDefault();
+    this.createMessage(this.state.newMessage);
+    this.setState({newMessage: ''});
+    console.log('sending message');
   }
 
   render() {
  const activeRoom = this.props.activeRoom;
 
  const messageList = (
-  this.state.messages.map((message) => {
+  this.state.messages.map((message) =>  {
     if (message.roomId === activeRoom.key) {
       return <li key={message.key}>{message.content}</li>
     }
@@ -42,40 +67,29 @@ class MessageList extends Component {
   })
 );
 
+const messageForm = (
+  <form className='message-create'>
+    <label>
+      New Message:
+      <textarea placeholder="Type New Message Here" onChange= {this.handleChange.bind(this)}></textarea>
+    </label>
+    <button className="text" onClick={this.handleSend}>Send
+    </button>
+  </form>
+);
+
 return(
-  <div>
-    <ul>{messageList}</ul>
-  </div>
+  <section>
+    <div>
+      <ul>{messageList}
+      </ul>
+    </div>
+    <section>
+    {this.props.activeRoom ? messageForm : null}
+    </section>
+  </section>
   );
 }
 }
-//   render() {
-//     const activeRoom = this.props.activeRoom;
-//     //const message = this.state.message;
-//       // if (message.roomId === activeRoom) {
-//     return(
-//       <section>
-//         <p>{this.props.activeRoom}</p>
-//
-//         <table>
-//           <tbody>
-//           { this.state.messages.map( (message) => (
-//             // const activeRoom = this.props.activeRoom;
-//               if (message.roomId === activeRoom) {
-//                 // return(
-//               <tr key={message.key}>
-//                 <td>{message.content}</td>
-//                 <td>{message.username}</td>
-//                 <td>{message.sentAt}</td>
-//                 <td>{message.roomId}</td>
-//               </tr>
-//           }))};
-//           </tbody>
-//         </table>
-//       </section>
-//       )
-//     );
-//   }
-// }
 
 export default MessageList;

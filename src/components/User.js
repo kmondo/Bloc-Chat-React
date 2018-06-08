@@ -3,10 +3,9 @@ import React, {Component} from 'react';
 class User extends Component {
   constructor(props) {
     super(props);
-    // this.state = {
-    //   user: ''
-    //
-    // };
+    this.state = {
+      user: ''
+    };
 
     this.userRef = this.props.firebase.database().ref('user');
     this.signIn = this.signIn.bind(this);
@@ -32,14 +31,8 @@ class User extends Component {
 
 
   render() {
-      // let userName = 'Guest';
-      //   if (this.props.user) {
-      //     userName = this.props.user.displayName;
-      //   }
-
           return(
             <section>
-              {/* <div>Current User:{userName}</div> */}
               <button className='sign-in' onClick={this.signIn}>Sign In</button>
               <button className='sign-out' onClick={this.signOut}>Sign Out</button>
             </section>
