@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 
+
 class MessageList extends Component {
   constructor(props) {
     super(props);
@@ -62,7 +63,14 @@ class MessageList extends Component {
  const messageList = (
   this.state.messages.map((message) =>  {
     if (message.roomId === activeRoom.key) {
-      return <li key={message.key}>{message.content}</li>
+      return <table className='message'>
+        <tbody>
+          <tr key={message.key}>{message.content}</tr>
+          <tr>{message.username}</tr>
+          <tr>{message.sentAt}</tr>
+        </tbody>
+      </table>
+
     }
     return null;
   })
